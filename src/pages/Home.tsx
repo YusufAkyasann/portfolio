@@ -10,14 +10,26 @@ export default function Home() {
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="stack" style={{ maxWidth: 800, marginLeft: '10%', marginRight: '50%' }}>
-        <h1 style={{ lineHeight: 1.1 }}>Merhaba, ben Yusuf</h1>
-        <p>Frontend geliştirici. Modern web uygulamaları ve performans odaklı arayüzler.</p>
-        <div className="cluster">
-          <a className="btn" href="/projects">Projeler</a>
-          <a className="btn" href="/contact">İletişim</a>
-        </div>
-      </div>
+<div className="stack" style={{ maxWidth: 'auto', marginLeft: '10%', marginRight: '10%'}}>
+    <h1 style={{ lineHeight: 1.1 }}>Yazılım Mühendisi & React Geliştiricisi Yusuf Akyasan</h1>
+
+ 
+    <div className="content-row">
+        
+     
+        <p className="intro-text">
+            Modern web uygulamaları ve performans odaklı arayüzler.
+        </p>
+        
+ 
+        <a className="btn1" href="/about">
+            Potansiyelimi 
+            <br />
+            Keşfet
+        </a> 
+
+    </div>
+</div>
     </motion.section>
   );
 }

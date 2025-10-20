@@ -55,6 +55,51 @@ p { color: var(--muted); }
   color: var(--text);
   cursor: pointer;
 }
+.content-row {
+  display: flex; /* Öğeleri yan yana hizala */
+  justify-content: space-between; /* Metni sola, butonu sağa yasla */
+  align-items: center; /* Öğeleri dikeyde ortala */
+  width: 100%; /* Kapsayıcının genişliğini tamamen kullan */
+  margin-top: 20px; 
+  
+  /* Not: Eğer "stack" div'i %5 margin'e sahipse, bu div'in de 
+     içeriden bir miktar boşluğa ihtiyacı olabilir. */
+}
+
+/* Sol Taraftaki Metin Stili */
+.intro-text {
+  /* Butonun yanına sığması ve butonla eşit seviyede hizalanması için */
+  max-width: 100%; 
+  margin: 0; 
+  margin-right: 50%;
+}
+
+
+.btn1 {
+
+  padding: 20px 40px; /* Butonu biraz küçülttüm */
+  font-size: 24px; 
+  font-weight: 600; 
+  
+  /* Arka Plan ve Renkler */
+  background-color: #7198c5; 
+  color: white; 
+  border: none; 
+  border-radius: 8px; 
+  text-decoration: none; 
+  display: inline-block; 
+  text-align: center; /* İki satırlı metni ortalamak için */
+  
+  /* Geçiş Efekti */
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn1:hover {
+  background-color: #357ABD; 
+  cursor: pointer; 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 .chip {
   padding: 6px 10px;
   border-radius: 999px;
