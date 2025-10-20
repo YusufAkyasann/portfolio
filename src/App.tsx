@@ -7,6 +7,7 @@ const Projects = lazy(() => import('./pages/Projects'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 
+
 function LoadingScreen() {
   return (
     <div style={{
