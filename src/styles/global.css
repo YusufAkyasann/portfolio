@@ -1,0 +1,16 @@
+:root { color-scheme: dark; }
+[data-theme="light"] body { background: #f8fafc; color: #0b1220; }
+.navbar { background: #0b0f17; }
+[data-theme="light"] .navbar { background: #ffffff; border-bottom-color: #e5e7eb; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: #0b0f17;
+  color: #e2e8f0;
+}
+.container { max-width: 1100px; margin: 32px auto; padding: 0 20px; }
+h1 { font-size: 32px; margin: 0 0 12px; }
+p { color: #cbd5e1; }
+
+
