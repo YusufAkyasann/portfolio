@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import './Navbar.css';
 
 function ThemeToggle() {
@@ -7,8 +7,8 @@ function ThemeToggle() {
     if (stored === 'dark' || stored === 'light') return stored;
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
-  const [theme, setTheme] = React.useState<'dark' | 'light'>(getInitial);
-  React.useEffect(() => {
+  const [theme, setTheme] = useState<'dark' | 'light'>(getInitial);
+  useEffect(() => {
     const root = document.documentElement;
     root.dataset.theme = theme;
     localStorage.setItem('theme', theme);
@@ -21,20 +21,29 @@ function ThemeToggle() {
 }
 
 export function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className="navbar">
       <nav className="nav">
-        <div className="brand">Yusuf</div>
-        <ul className="menu">
-          <li><NavLink to="/" end>Home</NavLink></li>
-          <li><NavLink to="/projects">Projects</NavLink></li>
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
+        <div className="brand">Yusuf Akyasan</div>
+        <button 
+          className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
+          <li><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
+          <li><a href="#projects" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
+          <li><a href="#about" onClick={() => setIsMenuOpen(false)}>About</a></li>
+          <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
         </ul>
         <ThemeToggle />
       </nav>
     </header>
   );
 }
-
-

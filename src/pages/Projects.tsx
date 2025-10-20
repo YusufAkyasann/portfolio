@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 
 type Project = {
   id: string;
@@ -35,14 +36,21 @@ export default function Projects() {
   }
 
   return (
-    <section className="container">
+    <motion.section
+      id="projects"
+      className="container section"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+    >
       <h1>Projeler</h1>
       <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 16 }}>
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Ara..."
-          style={{ padding: '8px 10px', background: '#0f172a', color: '#e2e8f0', border: '1px solid #1f2937', borderRadius: 8 }}
+          style={{ padding: '8px 10px', background: 'var(--card-bg)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 8 }}
         />
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           {ALL_TAGS.map((tag) => (
@@ -52,9 +60,9 @@ export default function Projects() {
               style={{
                 padding: '6px 10px',
                 borderRadius: 999,
-                border: '1px solid #1f2937',
-                background: selectedTags.includes(tag) ? '#1e293b' : 'transparent',
-                color: selectedTags.includes(tag) ? '#93c5fd' : '#cbd5e1',
+                border: '1px solid var(--border)',
+                background: selectedTags.includes(tag) ? 'var(--card-bg)' : 'transparent',
+                color: selectedTags.includes(tag) ? 'var(--accent)' : 'var(--muted)',
               }}
             >
               #{tag}
@@ -62,14 +70,14 @@ export default function Projects() {
           ))}
         </div>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16 }}>
+      <div className="grid-cards">
         {filtered.map((p) => (
-          <article key={p.id} style={{ padding: 16, border: '1px solid #1f2937', borderRadius: 12, background: '#0f172a' }}>
+          <article key={p.id} className="card">
             <h3 style={{ marginTop: 0 }}>{p.title}</h3>
             <p style={{ marginTop: 8 }}>{p.description}</p>
             <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
               {p.tags.map((t) => (
-                <span key={t} style={{ fontSize: 12, color: '#93c5fd' }}>#{t}</span>
+                <span key={t} style={{ fontSize: 12, color: 'var(--accent)' }}>#{t}</span>
               ))}
             </div>
             <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
@@ -83,8 +91,6 @@ export default function Projects() {
           </article>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
-
-
