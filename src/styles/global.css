@@ -1,4 +1,3 @@
-
 :root {
   color-scheme: dark;
   --bg: #0b0f17;
@@ -8,17 +7,20 @@
   --card-bg: #0b0f17;
   --navbar-bg: #0b0f17;
   --accent: #60a5fa;
+  /* Dark mode için border rengini biraz açmak faydalı olabilir, örneğin: --border: #1f2937; */
 }
 [data-theme="light"] {
   color-scheme: light;
-  --bg: #bedde8; /* isteğe göre light arka plan */
+  --bg: #bedde8; 
   --text: #04070e;
   --muted: #18202b;
   --border: #bedde8;
   --card-bg: #bedde8;
   --navbar-bg: #a0d3e4;
   --accent: #3c746f;
+  /* Light mode için kenarlık (border) rengi */
 }
+
 .navbar { background: var(--navbar-bg); }
 * { box-sizing: border-box; }
 html { font-size: clamp(14px, 0.9vw + 10px, 18px); }
@@ -30,9 +32,13 @@ body {
 }
 .container { max-width: 1100px; margin: clamp(20px, 4vw, 40px) auto; padding: 0 clamp(12px, 3vw, 24px); }
 h1 { font-size: clamp(24px, 2.4vw + 10px, 36px); margin: 0 0 12px; }
+h4 { font-size: 1rem; font-weight: 500; color: var(--muted); margin: 0; } /* Junior SE yazısı için temel stil */
 p { color: var(--muted); }
 
-/* Cards, inputs, buttons */
+
+/* ==================================== */
+/* 1. Base Components: Cards, Inputs */
+/* ==================================== */
 .card {
   padding: clamp(12px, 2vw, 16px);
   border: 1px solid var(--border);
@@ -48,100 +54,193 @@ p { color: var(--muted); }
   border-radius: 10px;
   width: min(420px, 100%);
 }
-.sutun-gorsel{
+.sutun-gorsel {
   max-width: 15%; 
-    height: auto;
-    border-radius: 6px;
-    margin-bottom: 20px; 
-    border: 1px solid var(--border);
-    object-fit: cover; 
-    
-    /* YATAY ORTALAMA İÇİN KRİTİK EKLEME */
-    display: block; /* margin: auto'nun çalışması için zorunlu */
-    margin-left: auto;
-    margin-right: auto;
+  height: auto;
+  margin-bottom: 20px; 
+  border: 1px solid var(--border);
+  object-fit: cover; 
+  border-radius: 50%; /* Daire olması için */
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
 }
-/* Ana Kapsayıcı (Değişkenler ile uyumlu CSS'ten alıntıdır) */
+
+
+/* ==================================== */
+/* 2. Layout Elements: Two-Column Section */
+/* ==================================== */
 .iki-sutunlu-bolum {
   display: flex;
   width: 100%;
   padding: 40px 0;
-  gap: clamp(20px, 3vw, 40px); /*boşluk*/
+  gap: clamp(20px, 3vw, 40px);
   position: relative;
 }
-.iki-sutunlu-bolum::after {
-  content: '';
-  position: absolute;
-  /* Ortalamak için: */
-  left: 50%;
-  transform: translateX(-50%);
-  /* Yükseklik ve Stil: */
-  top: 30px;
-  bottom: 0; 
-  width: 2px; 
-  background-color: var(--accent);
-  border-radius: 999px;
-  z-index: 1; /* Kartların üzerine çıkmasını sağlar */
-}
 
-/* Sütunlar (Değişkenler ile uyumlu CSS'ten alıntıdır) */
 .sutun {
-  flex: 1; 
   padding: 20px;
   background-color: var(--card-bg); 
   border-radius: 8px;
   border: 1px solid var(--border);
 }
 
-
-/* YENİ: Sütun Ayırıcı Çizgi Stili */
-.sutun-ayirici {
-  /* Çizginin genişliği: Çok ince bir çizgi veriyoruz */
-  width: 1px; 
-  
-  /* Çizginin yüksekliği: Kapsayıcının (iki-sutunlu-bolum) yüksekliğini al */
-  height: 100%; 
-  
-  /* Arkaplan rengi: Genellikle kenarlık (border) rengini veya muted rengi kullanılır. */
-  background-color: var(--text); 
-  
-  /* Eğer sütunlar dikeyde tam ortalanmışsa (align-items: center), 
-     bu çizgi de otomatik ortalanacaktır. */
+/* SÜTUN ORANLARI VE HİZALAMA */
+.iki-sutunlu-bolum > .sutun:first-child {
+  flex: 0 0 40%; 
+  max-width: 40%;
+  text-align: center; /* Sol sütunun içeriği ortalanmış kalır */
 }
-.chip {
-  padding: 6px 10px;
+
+.iki-sutunlu-bolum > .sutun:nth-child(2) {
+  flex: 1; /* Geri kalan alanı kaplar */
+  max-width: 60%; 
+  text-align: left; /* Sağ sütunun metinleri sola yaslı kalır */
+}
+
+/* DİKEY ÇİZGİ TANIMI */
+.iki-sutunlu-bolum::after {
+  content: '';
+  position: absolute;
+  left: 40%; 
+  transform: translateX(-50%); /* Çizgiyi tam 40% sınırına ortalar */
+  top: 0;   /* Yukarı uzatıldı */
+  bottom: 0; /* Aşağı uzatıldı */ 
+  width: 2px; 
+  background-color: var(--accent);
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: transparent;
+  z-index: 1; 
+}
+
+
+/* ==================================== */
+/* 3. Common/Utility Styles */
+/* ==================================== */
+.ayirici-cizgi {
+  height: 1px;
+  width: 64px; 
+  background-color: var(--border);
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+p.icerik {
+  margin-bottom: 20px;
+}
+.baslik { /* h2 için genel başlık stili */
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+
+/* ==================================== */
+/* 4. Contact/Icon Elements (Sol Sütun) */
+/* ==================================== */
+.iletisim-satiri {
+  display: flex;        
+  align-items: center;  
+  gap: 8px;             
+  margin-bottom: 8px;   
+  width: fit-content; 
+  margin-left: auto;
+  margin-right: auto;
+}
+.ikon {
+  width: 16px; 
+  height: 16px;
+  color: var(--muted); /* İkon rengi, metin rengiyle uyumlu */
+  flex-shrink: 0;
+}
+.ikon-metni {
+  margin: 0;
+  padding: 0; 
+  font-size: 1rem;
   color: var(--muted);
 }
-.chip.is-active { background: var(--card-bg); color: var(--accent); }
 
-/* Responsive grids */
-.grid-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: clamp(12px, 2.4vw, 20px);
+
+/* ==================================== */
+/* 5. Right Column Specific Styles (Skills/Timeline) */
+/* ==================================== */
+.section-baslik {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border); 
 }
 
+/* Etiketler (Tags) */
+.etiket-kapsayici {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; 
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.beceri-etiketi {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* Zaman Çizelgesi (Timeline) */
+.timeline-item {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 25px;
+  border-left: 2px solid var(--border);
+}
+.timeline-dot {
+  position: absolute;
+  left: -6px;
+  top: 5px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: var(--muted);
+}
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.timeline-title {
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.timeline-date {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.timeline-subtitle {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 2px 0 5px 0;
+}
+.timeline-aciklama {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+
+/* ==================================== */
+/* 6. Media Queries */
+/* ==================================== */
 @media (max-width: 640px) {
   .menu { gap: 12px; flex-wrap: wrap; }
 }
-
-/* Sections and layout helpers */
-.section { padding-block: clamp(24px, 6vw, 64px); }
-.stack { display: grid; gap: clamp(8px, 2vw, 16px); }
-.cluster { display: flex; gap: clamp(8px, 2vw, 16px); align-items: center; flex-wrap: wrap; }
-.hero { padding-block: clamp(32px, 8vw, 96px); }
-
-/* Links */
-a { color: var(--accent); }
-a:hover { opacity: 0.9; }
-
-/* Free layout helpers */
-.fluid { max-width: none !important; width: 100% !important; margin-left: 0; margin-right: 0; }
-.align-start { text-align: left; }
-.align-center { text-align: center; }
-.align-end { text-align: right; }
-.bleed { padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); }
-
+@media (prefers-color-scheme: dark) {
+  .ayirici-cizgi {
+      background-color: var(--border-dark, #374151); 
+  }
+}

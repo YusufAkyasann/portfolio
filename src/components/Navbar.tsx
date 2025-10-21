@@ -26,7 +26,16 @@ export function Navbar() {
   return (
     <header className="navbar">
       <nav className="nav">
-        <div className="brand">Yusuf Akyasan</div>
+        
+
+        <ThemeToggle />
+      </nav>
+    </header>
+  );
+}
+/* Eğerki menü oluşturmak istiyorsanız aşşağıdaki yapıyı 30. satıra yapıştırınız. */
+/*
+
         <button 
           className={`menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -36,14 +45,12 @@ export function Navbar() {
           <span></span>
           <span></span>
         </button>
+      
         <ul className={`menu ${isMenuOpen ? 'menu-open' : ''}`}>
           <li><a href="#home" onClick={() => setIsMenuOpen(false)}>Home</a></li>
           <li><a href="#projects" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
           <li><a href="#minimalistportfolio" onClick={() => setIsMenuOpen(false)}>MinimalistPortfolio</a></li>
           <li><a href="#contact" onClick={() => setIsMenuOpen(false)}>Contact</a></li>
-        </ul>
-        <ThemeToggle />
-      </nav>
-    </header>
-  );
-}
+        </ul> 
+
+        */

@@ -3,9 +3,7 @@ import { Navbar } from './components/Navbar';
 import { HelmetProvider, Helmet } from 'react-helmet-async';
 
 const Home = lazy(() => import('./pages/Home'));
-const Projects = lazy(() => import('./pages/Projects'));
-const About = lazy(() => import('./pages/About'));
-const Contact = lazy(() => import('./pages/Contact'));
+
 
 
 function LoadingScreen() {
@@ -66,10 +64,6 @@ export default function App() {
       <HelmetProvider>
         <Helmet>
           <title>Yusuf | Portfolio</title>
-          <meta name="description" content="Yusuf'un React + TS ile oluşturduğu portföy sitesi." />
-          <meta property="og:title" content="Yusuf | Portfolio" />
-          <meta property="og:description" content="Projeler, hakkında ve iletişim sayfaları." />
-          <meta property="og:type" content="website" />
         </Helmet>
         <LoadingScreen />
         <style>{`
@@ -98,19 +92,12 @@ export default function App() {
     <HelmetProvider>
       <Helmet>
         <title>Yusuf | Portfolio</title>
-        <meta name="description" content="Yusuf'un React + TS ile oluşturduğu portföy sitesi." />
-        <meta property="og:title" content="Yusuf | Portfolio" />
-        <meta property="og:description" content="Projeler, hakkında ve iletişim sayfaları." />
-        <meta property="og:type" content="website" />
       </Helmet>
       <div>
         <Navbar />
         <main>
           <Suspense fallback={<div>Yükleniyor...</div>}>
             <Home />
-            <Projects />
-            <About />
-            <Contact />
           </Suspense>
         </main>
       </div>
