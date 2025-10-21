@@ -1,10 +1,11 @@
+
 :root {
   color-scheme: dark;
   --bg: #0b0f17;
   --text: #e2e8f0;
   --muted: #cbd5e1;
-  --border: #1f2937;
-  --card-bg: #0f172a;
+  --border: #0b0f17;
+  --card-bg: #0b0f17;
   --navbar-bg: #0b0f17;
   --accent: #60a5fa;
 }
@@ -13,8 +14,8 @@
   --bg: #bedde8; /* isteğe göre light arka plan */
   --text: #04070e;
   --muted: #18202b;
-  --border: #ddf4ff;
-  --card-bg: #ffffff;
+  --border: #bedde8;
+  --card-bg: #bedde8;
   --navbar-bg: #a0d3e4;
   --accent: #3c746f;
 }
@@ -47,58 +48,65 @@ p { color: var(--muted); }
   border-radius: 10px;
   width: min(420px, 100%);
 }
-.btn {
-  padding: 10px 12px;
-  border-radius: 10px;
+.sutun-gorsel{
+  max-width: 15%; 
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 20px; 
+    border: 1px solid var(--border);
+    object-fit: cover; 
+    
+    /* YATAY ORTALAMA İÇİN KRİTİK EKLEME */
+    display: block; /* margin: auto'nun çalışması için zorunlu */
+    margin-left: auto;
+    margin-right: auto;
+}
+/* Ana Kapsayıcı (Değişkenler ile uyumlu CSS'ten alıntıdır) */
+.iki-sutunlu-bolum {
+  display: flex;
+  width: 100%;
+  padding: 40px 0;
+  gap: clamp(20px, 3vw, 40px); /*boşluk*/
+  position: relative;
+}
+.iki-sutunlu-bolum::after {
+  content: '';
+  position: absolute;
+  /* Ortalamak için: */
+  left: 50%;
+  transform: translateX(-50%);
+  /* Yükseklik ve Stil: */
+  top: 30px;
+  bottom: 0; 
+  width: 2px; 
+  background-color: var(--accent);
+  border-radius: 999px;
+  z-index: 1; /* Kartların üzerine çıkmasını sağlar */
+}
+
+/* Sütunlar (Değişkenler ile uyumlu CSS'ten alıntıdır) */
+.sutun {
+  flex: 1; 
+  padding: 20px;
+  background-color: var(--card-bg); 
+  border-radius: 8px;
   border: 1px solid var(--border);
-  background: var(--card-bg);
-  color: var(--text);
-  cursor: pointer;
 }
-.content-row {
-  display: flex; /* Öğeleri yan yana hizala */
-  justify-content: space-between; /* Metni sola, butonu sağa yasla */
-  align-items: center; /* Öğeleri dikeyde ortala */
-  width: 100%; /* Kapsayıcının genişliğini tamamen kullan */
-  margin-top: 20px; 
+
+
+/* YENİ: Sütun Ayırıcı Çizgi Stili */
+.sutun-ayirici {
+  /* Çizginin genişliği: Çok ince bir çizgi veriyoruz */
+  width: 1px; 
   
-  /* Not: Eğer "stack" div'i %5 margin'e sahipse, bu div'in de 
-     içeriden bir miktar boşluğa ihtiyacı olabilir. */
-}
-
-/* Sol Taraftaki Metin Stili */
-.intro-text {
-  /* Butonun yanına sığması ve butonla eşit seviyede hizalanması için */
-  max-width: 100%; 
-  margin: 0; 
-  margin-right: 50%;
-}
-
-
-.btn1 {
-
-  padding: 20px 40px; /* Butonu biraz küçülttüm */
-  font-size: 24px; 
-  font-weight: 600; 
+  /* Çizginin yüksekliği: Kapsayıcının (iki-sutunlu-bolum) yüksekliğini al */
+  height: 100%; 
   
-  /* Arka Plan ve Renkler */
-  background-color: #7198c5; 
-  color: white; 
-  border: none; 
-  border-radius: 8px; 
-  text-decoration: none; 
-  display: inline-block; 
-  text-align: center; /* İki satırlı metni ortalamak için */
+  /* Arkaplan rengi: Genellikle kenarlık (border) rengini veya muted rengi kullanılır. */
+  background-color: var(--text); 
   
-  /* Geçiş Efekti */
-  transition: background-color 0.3s ease, transform 0.1s ease;
-}
-
-.btn1:hover {
-  background-color: #357ABD; 
-  cursor: pointer; 
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Eğer sütunlar dikeyde tam ortalanmışsa (align-items: center), 
+     bu çizgi de otomatik ortalanacaktır. */
 }
 .chip {
   padding: 6px 10px;
