@@ -2,7 +2,7 @@
 
 Bu depo, Junior Yazılım Geliştirici olarak yeteneklerimi, deneyimlerimi ve teknik birikimimi sergilediğim kişisel portfolyo sitemin kaynak kodunu barındırmaktadır.
 
-Portfolyoyu Canlı Görüntüle: portfolio-lake-alpha-95.vercel.app
+Portfolyoyu Canlı Görüntüle: [portfolio-lake-alpha-95.vercel.app](https://portfolio-lake-alpha-95.vercel.app )
 
 ## Özellikler
 
