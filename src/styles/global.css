@@ -7,7 +7,9 @@
   --card-bg: #0b0f17;
   --navbar-bg: #0b0f17;
   --accent: #60a5fa;
-  /* Dark mode için border rengini biraz açmak faydalı olabilir, örneğin: --border: #1f2937; */
+  --tag-bg: #1f2937;
+  --tag-border: #374151;
+  --tag-text: #e5e7eb;
 }
 [data-theme="light"] {
   color-scheme: light;
@@ -18,7 +20,9 @@
   --card-bg: #bedde8;
   --navbar-bg: #a0d3e4;
   --accent: #3c746f;
-  /* Light mode için kenarlık (border) rengi */
+  --tag-bg: #f9fafb;
+  --tag-border: #e5e7eb;
+  --tag-text: #374151;
 }
 
 .navbar { background: var(--navbar-bg); }
@@ -32,13 +36,10 @@ body {
 }
 .container { max-width: 1100px; margin: clamp(20px, 4vw, 40px) auto; padding: 0 clamp(12px, 3vw, 24px); }
 h1 { font-size: clamp(24px, 2.4vw + 10px, 36px); margin: 0 0 12px; }
-h4 { font-size: 1rem; font-weight: 500; color: var(--muted); margin: 0; } /* Junior SE yazısı için temel stil */
+h4 { font-size: 1rem; font-weight: 500; color: var(--muted); margin: 0; }
 p { color: var(--muted); }
 
 
-/* ==================================== */
-/* 1. Base Components: Cards, Inputs */
-/* ==================================== */
 .card {
   padding: clamp(12px, 2vw, 16px);
   border: 1px solid var(--border);
@@ -55,21 +56,19 @@ p { color: var(--muted); }
   width: min(420px, 100%);
 }
 .sutun-gorsel {
-  max-width: 15%; 
+  max-width: 23%; 
   height: auto;
   margin-bottom: 20px; 
   border: 1px solid var(--border);
   object-fit: cover; 
-  border-radius: 50%; /* Daire olması için */
+  border-radius: 50%;
   display: block; 
   margin-left: auto;
   margin-right: auto;
+  margin-top: 15%;
 }
 
 
-/* ==================================== */
-/* 2. Layout Elements: Two-Column Section */
-/* ==================================== */
 .iki-sutunlu-bolum {
   display: flex;
   width: 100%;
@@ -85,27 +84,25 @@ p { color: var(--muted); }
   border: 1px solid var(--border);
 }
 
-/* SÜTUN ORANLARI VE HİZALAMA */
 .iki-sutunlu-bolum > .sutun:first-child {
   flex: 0 0 40%; 
   max-width: 40%;
-  text-align: center; /* Sol sütunun içeriği ortalanmış kalır */
+  text-align: center;
 }
-
 .iki-sutunlu-bolum > .sutun:nth-child(2) {
-  flex: 1; /* Geri kalan alanı kaplar */
-  max-width: 60%; 
-  text-align: left; /* Sağ sütunun metinleri sola yaslı kalır */
+  flex: 1;
+  max-width: 45%;
+  margin-left: 9%;
+  text-align: left;
 }
 
-/* DİKEY ÇİZGİ TANIMI */
 .iki-sutunlu-bolum::after {
   content: '';
   position: absolute;
   left: 40%; 
-  transform: translateX(-50%); /* Çizgiyi tam 40% sınırına ortalar */
-  top: 0;   /* Yukarı uzatıldı */
-  bottom: 0; /* Aşağı uzatıldı */ 
+  transform: translateX(-50%);
+  top: 0;
+  bottom: 0;
   width: 2px; 
   background-color: var(--accent);
   border-radius: 999px;
@@ -113,9 +110,6 @@ p { color: var(--muted); }
 }
 
 
-/* ==================================== */
-/* 3. Common/Utility Styles */
-/* ==================================== */
 .ayirici-cizgi {
   height: 1px;
   width: 64px; 
@@ -128,16 +122,13 @@ p { color: var(--muted); }
 p.icerik {
   margin-bottom: 20px;
 }
-.baslik { /* h2 için genel başlık stili */
+.baslik {
     font-size: 1.5rem;
     margin-top: 0;
     margin-bottom: 0.5rem;
 }
 
 
-/* ==================================== */
-/* 4. Contact/Icon Elements (Sol Sütun) */
-/* ==================================== */
 .iletisim-satiri {
   display: flex;        
   align-items: center;  
@@ -147,10 +138,48 @@ p.icerik {
   margin-left: auto;
   margin-right: auto;
 }
+.iletisim-satiri-merkezde {
+  display: flex;        
+  align-items: center;  
+  gap: 8px;             
+  margin-bottom: 8px;   
+  width: fit-content; 
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--muted); 
+  text-decoration: none; 
+}
+.sosyal-medya-kapsayici {
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+  margin-top: 10px;
+}
+.sosyal-medya-ikon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+.sosyal-medya-link:hover .sosyal-medya-ikon {
+  transform: translateY(-3px);
+}
 .ikon {
   width: 16px; 
   height: 16px;
-  color: var(--muted); /* İkon rengi, metin rengiyle uyumlu */
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.ikon-metni {
+  margin: 0;
+  padding: 0; 
+  font-size: 1rem;
+  color: var(--muted);
+}
+.ikon {
+  width: 16px; 
+  height: 16px;
+  color: var(--muted);
   flex-shrink: 0;
 }
 .ikon-metni {
@@ -161,9 +190,6 @@ p.icerik {
 }
 
 
-/* ==================================== */
-/* 5. Right Column Specific Styles (Skills/Timeline) */
-/* ==================================== */
 .section-baslik {
   font-size: 1.25rem;
   font-weight: 600;
@@ -172,7 +198,6 @@ p.icerik {
   border-bottom: 1px solid var(--border); 
 }
 
-/* Etiketler (Tags) */
 .etiket-kapsayici {
   display: flex;
   flex-wrap: wrap;
@@ -182,15 +207,14 @@ p.icerik {
 }
 .beceri-etiketi {
   padding: 4px 10px;
-  font-size: 0.85rem;
-  background: var(--bg);
-  color: var(--text);
+  font-size: 0.875rem;
+  background: var(--tag-bg);
+  color: var(--tag-text);
   border-radius: 9999px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--tag-border);
   white-space: nowrap;
 }
 
-/* Zaman Çizelgesi (Timeline) */
 .timeline-item {
   position: relative;
   padding-left: 20px;
@@ -233,11 +257,74 @@ p.icerik {
 }
 
 
-/* ==================================== */
-/* 6. Media Queries */
-/* ==================================== */
 @media (max-width: 640px) {
   .menu { gap: 12px; flex-wrap: wrap; }
+  
+  .iki-sutunlu-bolum {
+    flex-direction: column;
+    padding: 20px 0;
+    gap: 0;
+  }
+
+  .iki-sutunlu-bolum::after {
+    content: none;
+  }
+  
+  .sutun {
+      padding: 20px 0;
+      border: none;
+      background-color: transparent;
+  }
+
+  .iki-sutunlu-bolum > .sutun:first-child {
+    flex: 1;
+    max-width: 100%;
+    margin-bottom: 20px;
+    padding-bottom: 30px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  
+  .sutun-gorsel {
+      margin-top: 0;
+      max-width: 25%;
+  }
+
+  .iki-sutunlu-bolum > .sutun:nth-child(2) {
+    flex: 1;
+    max-width: 100%;
+    margin-left: 0;
+    padding-top: 0;
+    text-align: center;
+  }
+  
+  .section-baslik {
+    text-align: center;
+  }
+  
+  .etiket-kapsayici {
+    justify-content: center;
+  }
+  
+  .timeline-item {
+    border-left: none;
+    padding-left: 0;
+    width: 90%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+  
+  .timeline-dot {
+  position: absolute;
+  left: -15px;
+  top: 5px;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background-color: var(--muted);
+  }
 }
 @media (prefers-color-scheme: dark) {
   .ayirici-cizgi {
