@@ -16,8 +16,8 @@ Portfolyoyu Canlı Görüntüle: [portfolio-lake-alpha-95.vercel.app](https://po
 | Kategori | Teknolojiler |
 | :--- | :--- |
 | **Frontend Çatısı** | **React**, **Next.js** |
-| **Programlama Dili** | **TypeScript**, JavaScript (ES6+), HTML, CSS |
-| **Stil ve Animasyon** | Özel CSS / CSS Modülleri, **Framer Motion** |
+| **Programlama Dili** | **TypeScript**, JavaScript, HTML, CSS |
+| **Stil ve Animasyon** | CSS Modülleri, **Framer Motion** |
 | **Geliştirme Ortamı** | VS Code, Cursor |
 | **Versiyon Kontrol** | Git, GitHub |
 
